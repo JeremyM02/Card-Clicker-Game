@@ -77,10 +77,12 @@ cardList.addEventListener('click', function(e){
     console.log('CLicked on ', e.target.textContent);
     //Check if the card is green, meaning that its active, then change it to red, meaning inactive.
     if (e.target.classList.contains('active')){
+        score += 5;
+        combo = 1;
+
         e.target.classList.remove('active');
         e.target.classList.add('inactive');
-        combo = 1;
-        score += 5;
+
         comboText.textContent = 'Combo: 1.0x';
         scoreText.textContent = `Score: ${score}`;
         console.log('Green Card Clicked - Score: ', score);
@@ -94,8 +96,9 @@ cardList.addEventListener('click', function(e){
     //Clicking a bunch of red cards in a row increases combo by 1x.
     if (e.target.classList.contains('inactive')) {
         score += 10 * combo;
-        scoreText.textContent = `Score: ${score}`;
         combo++;
+
+        scoreText.textContent = `Score: ${score}`;
         comboText.textContent = `Combo: ${combo}.0x`;
         console.log('Red Card Clicked - Score: ', score);
         console.log('Combo: ', combo);
